@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Z-COM
+
+[Next 강의](https://www.inflearn.com/course/next-react-query-sns%EC%84%9C%EB%B9%84%EC%8A%A4/dashboard)를 듣고 공부한 것을 정리한 프로젝트입니다.
+
+코드를 따라 치는것은 의미가 없고 시간이 낭비된다고 생각하여
+
+코드는 [강사님이 제공해준 코드](https://github.com/ZeroCho/next-app-router-z?tab=readme-ov-file)를 그대로 복붙했고,
+
+[인사이트만 마크다운으로 따로 정리](https://github.com/seung1/nextjs-sns-project/tree/main/study)하였습니다.
+
+<br/>
 
 ## Getting Started
 

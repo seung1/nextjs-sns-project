@@ -1,4 +1,6 @@
-강의 메모
+## 강의 메모
+
+### app router와 page router
 
 pages router에서 있는 문제가 구조적 문제가있는데 이를 개선한 app router
 
@@ -11,13 +13,67 @@ app router에서 개선된점
 3. 리액트 18버전을 쓰는데 서버컴포넌트를 적극활용하여 html 로딩시간을 줄이고, 자바스크립트 용량도 줄어든다.
 4. 캐싱이 기본적으로 구현되어있다.
 
-페이지 구조를 정하는것에 있어서 username이 페이지명과 동일하게되면 페이지명이 더 우선순위를 가진다.
-그리고 유저이름을 페이지명과 동일하게 설정이 불가능하도록 막아야한다.
+### app 폴더 구조
 
-| 그래서 유저이름에 대해서는 경로가 깊거나, @를 붙이거나 하는것 같음
+1. 페이지 구조를 정하는것에 있어서 username이 페이지명과 동일하게되면 페이지명이 더 우선순위를 가진다.
+   그리고 유저이름을 페이지명과 동일하게 설정이 불가능하도록 막아야한다.
 
-app 폴더 아래에 있는 layout.tsx는 모든 페이지에 공통적으로 적용되는 레이아웃이다.
+   > 그래서 유저이름에 대해서는 경로가 깊거나, @를 붙이거나 하는것 같음
 
-만약 특정페이지 전용 layout을 지정하고싶다면 해당 폴더안에 layout을 선언해주면 된다.
+2. app 폴더 아래에 있는 layout.tsx는 모든 페이지에 공통적으로 적용되는 레이아웃이다.
 
-| 특정페이지 구조안에서 추가되는 layout이다.
+   만약 특정페이지 전용 layout을 지정하고싶다면 해당 폴더안에 layout을 선언해주면 된다.
+
+   > 특정페이지 구조안에서 추가되는 layout이다.
+   >
+   > 채널페이지 리스트가 있고 채널 상세페이지 등 채널이라는 큰 타이틀안에서 공통적인 ui를 적용할때 사용한다.
+
+3. 주소창에 관여없이 페이지끼리 그룹을 묶어서할때는 ()를 사용한다
+
+   > 예를들어 로그인전과 로그인후에 화면이 완전히 바뀐다면 동일한 layout을 쓰기 어렵다.
+   >
+   > 이런상황에서 공통된 layout 관리를 위해 추가 폴더구조를 사용하게되면 원치않는 url구조가 나타날수있다.
+   >
+   > 이럴때는 (afterLogin), (beforeLogin)과 같은 폴더로 묶게되면 쉽게 공통 layout설정이 가능하다
+
+### layout과 template의 차이
+
+layout은 페이지 이동할때 리렌더링이 발생하지 않지만 template는 리렌더링이 발생한다.
+
+주로 layout을 사용하지만 페이지 이동에 따라 기록이 필요한 경우 template 사용 -> 구글 애널리틱스
+
+### a태그와 Link의 차이점
+
+a태그는 페이지가 새로고침하면서 넘어간다.
+
+-> a태그와 Link와 push, replace 차이점?
+
+### app 폴더 구조에서 redirect
+
+```tsx
+// /app/(beforeLogin)/login/page.tsx
+
+import { redirect } from "next/navigation";
+
+export default function LoginPage() {
+  redirect("/i/flow/login");
+}
+```
+
+위와 같은 방식으로 적게되면 /login 접속시 바로 redirect된다.
+
+### 특정 url에 접속하면 모달을 자동으로 띄우는데, 백그라운드에 이전페이지가 남아있도록
+
+> app router의 [Parallel Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) 이용하기
+
+즉, 서로 다른 두 페이지를 동시에 보여주는 것
+
+<img src='./images/parallel-routes.avif'>
+
+같은 폴더내에 위치해야 가능하다.
+
+위 예시에서는 app이라는 폴더아래 page와 layout가 존재하고, 그아래 @team, @analytics가 있다.
+
+그리고 layout에서 나머지 두개를 참조하는 구조이다.
+
+layout에서 page는 children에 위치한다.
