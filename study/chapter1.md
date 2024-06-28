@@ -78,9 +78,13 @@ export default function LoginPage() {
 
 layout에서 page는 children에 위치한다.
 
-path alias로 설정할 경우
+### path alias로 설정할 경우
 
-상대경로 표시에서 ../../../와 같이 표시하지 않고 src를 표현하는 곳에서 @로 대신하여 절대경로로 표기할 수 있다.
+상대경로 표시에서 ../../../와 같이 표시하지 않고
+
+특정 기호 @와 같은것을 사용하여
+
+src의 위치를 절대경로처럼 표기할 수 있다.
 
 ### 서버컴포넌트와 클라이언트 컴포넌트
 
@@ -91,3 +95,25 @@ path alias로 설정할 경우
 `use client`를 상단에 입력한다.
 
 그리고는 useState 등을 사용할 수 있게 된다.
+
+### default.tsx
+
+parallel route가 필요없을 때 기본값을 지정하는 파일
+
+모달에 parallel route를 사용한다면 기본값을 null이 될 수 있다.
+
+layout에서 children과 modal을 인자로 받아서 화면에 표시할때
+
+/이면
+
+children -> page.tsx
+
+modal -> @modal/default.tsx
+
+/i/flow/login 이면
+
+children -> /i//flow/login/page.tsx
+
+modal -> @modal/i/flow/login/page.tsx
+
+위와 같은 경우는 모달을 띄울때 예시이고 default.tsx 대신에 page.tsx도 가능하다.
