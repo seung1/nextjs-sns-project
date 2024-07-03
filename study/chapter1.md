@@ -68,7 +68,7 @@ export default function LoginPage() {
 
 즉, 서로 다른 두 페이지를 동시에 보여주는 것
 
-<img src='./images/parallel-routes.avif'>
+<img src='./images/parallel-routes.avif' alt="parallel route">
 
 같은 폴더내에 위치해야 가능하다.
 
@@ -117,3 +117,33 @@ children -> /i//flow/login/page.tsx
 modal -> @modal/i/flow/login/page.tsx
 
 위와 같은 경우는 모달을 띄울때 예시이고 default.tsx 대신에 page.tsx도 가능하다.
+
+### intercepting route
+
+parallel route이면서 intercepting route를 같이 쓰게 되면
+
+기존 화면 위에 모달을 띄울 수 있게 된다.
+
+<img src='./images/intercepting-route.png' alt="intercepting route">
+
+위 사진에서 빨간색 부분은 intercepting route 부분이다.
+
+그렇다면 modal 하위에 있는 경로 /@modal/(.)i/flow/login/page.tsx 말고
+
+/i/flow/login/paget.tsx 는 언제 쓰이는가?
+
+이 경로에 있는 페이지는 새로고침시 사용된다.
+
+즉 모달이 띄워지면서 url이 바뀌게 되는데 새로고침을 하게 되면
+
+모달 뒤에 페이지가 사라지고 /i/flow/login/paget.tsx의 컴포넌트가 보여지게 된다.
+
+### \_private folder
+
+app router 아래에 생성할 수 있는 폴더이며
+
+\_를 붙여서 만들 수 있다.
+
+이 경우도 주소창에 뜨지 않는다.
+
+컴포넌트 폴더를 만들때 사용할 수 있다.
