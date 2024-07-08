@@ -138,6 +138,20 @@ parallel route이면서 intercepting route를 같이 쓰게 되면
 
 모달 뒤에 페이지가 사라지고 /i/flow/login/paget.tsx의 컴포넌트가 보여지게 된다.
 
+보통은 똑같이 구현하는데 꼭 똑같지 않아도 된다.
+
+> 주의할점은 기존화면 위에 모달을 띄우게 될경우 기존 화면은 이전 페이지가 된다.
+>
+> 그래서 / -> /I/flow/signup 이면
+>
+> 메인 위에 회원가입 모달이 뜨게되는데
+>
+> / -> /login -(redirect)-> /i/flow/login 이면
+>
+> /login 이라는 페이지 위에 뜨게 되는 것이므로 /login을 구현하지 않았다면
+>
+> 뒷 배경이 아무것도 없을 수도 있다 주의 !
+
 ### \_private folder
 
 app router 아래에 생성할 수 있는 폴더이며
@@ -147,3 +161,23 @@ app router 아래에 생성할 수 있는 폴더이며
 이 경우도 주소창에 뜨지 않는다.
 
 컴포넌트 폴더를 만들때 사용할 수 있다.
+
+### replace vs push
+
+push
+/ -> /login -> /i/flow/login
+
+replace
+/ -> /i/flow/login
+
+push의 경우는 뒤로가기를 눌렀을때 /login으로 가지만
+
+replace의 경우는 메인으로 가게 된다.
+
+### 여러개의 모달
+
+<img src='./images/modal2.png' alt="modal2">
+
+한페이지 내에서 뒷 배경을 유지하면서, 여러개의 모달을 띄우고자 한다면
+
+모달을 추가하고 layout에서도 추가해주면 된다.
